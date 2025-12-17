@@ -1,4 +1,4 @@
-name: Simple CI 21
+name: More workflows 21
 
 on:
   push:
