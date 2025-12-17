@@ -22,6 +22,7 @@ jobs:
             hello-yaml-local
             hello-world-local
             ping-local
+            z-ping-local
           permission: none
           issue-type: issue
 
