@@ -1,15 +1,27 @@
-name: Ping Command
+name: Ping
+run-name: "Ping: Issue #${{ github.event.inputs.issue-number }}"
+
 on:
-  repository_dispatch:
-    types: [z-ping-local-command]
+  workflow_dispatch:
+    inputs:
+      issue-number:
+        description: Issue number
+        required: true
+      comment-id:
+        description: Comment ID
+        required: true
+
+permissions:
+  issues: write
+  contents: read
+
 jobs:
-  helloWorld:
+  ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Update comment
+      - name: Reply with pong
         uses: peter-evans/create-or-update-comment@v5
         with:
-          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          issue-number: ${{ github.event.inputs.issue-number }}
           body: |
-            >pong ${{ github.event.client_payload.slash_command.args.all }}
-          reactions: hooray
+            Pong!

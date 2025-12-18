@@ -35,6 +35,16 @@ jobs:
           config: >
             [
               {
+                "command": "z-ping",
+                "permission": "none",
+                "issue_type": "issue",
+                "dispatch_type": "workflow",
+                "static_args": [
+                  "issue-number=${{ github.event.issue.number }}",
+                  "comment-id=${{ github.event.comment.id }}"
+                ]
+              },
+              {
                 "command": "rebase",
                 "permission": "admin",
                 "repository": "peter-evans/slash-command-dispatch-processor",
