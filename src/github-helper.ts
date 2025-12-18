@@ -191,7 +191,8 @@ export class GitHubHelper {
     core.debug(`Getting workflow ${workflowName} for repository ${repository}`)
     const {data: workflows} = await this.octokit.paginate(this.octokit.rest.actions.listRepoWorkflows,
       {
-        ...this.parseRepository(repository)
+        ...this.parseRepository(repository),
+        per_page: 100
       }
     )
     for (const workflow of workflows) {
