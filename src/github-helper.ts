@@ -189,7 +189,7 @@ export class GitHubHelper {
     workflowName: string
   ): Promise<string> {
     core.debug(`Getting workflow ${workflowName} for repository ${repository}`)
-    const {data: workflows} = await this.octokit.paginate(this.octokit.rest.actions.listRepoWorkflows,
+    const workflows = await this.octokit.paginate("GET /repos/{owner}/{repo}/actions/workflows",
       {
         ...this.parseRepository(repository),
         per_page: 100
